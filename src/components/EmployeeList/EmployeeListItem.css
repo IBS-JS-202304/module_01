@@ -1,0 +1,19 @@
+.employee-list-item {
+    padding: 5px 15px;
+    margin: 2px 4px;
+    border: solid #e2e2e280 1px;
+    border-radius: 5px;
+    display: flex;
+}
+
+.employee-list-item .avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: #e2e2e2;
+}
+
+.employee-list-item .user-info {
+    padding-top: 5px;
+    padding-left: 10px;
+}
