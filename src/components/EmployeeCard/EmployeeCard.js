@@ -1,12 +1,28 @@
+import { useNavigate, useParams } from "react-router-dom";
 import { EmployeeFullData as data } from '../../store/EmployeeFullData';
 import { EmployeeCardHeader } from './EmployeeCardHeader';
 import './EmployeeCard.css'
+import { useCallback, useEffect, useState } from 'react';
 
-export const EmployeeCard = ({ currentEmployee, onGoBack }) => {
-    const employee = data.find((el) => el.id === currentEmployee?.id);
+export const EmployeeCard = () => {
+    const navigate = useNavigate();
+    const { employeeId } = useParams();
+
+    const [employee, setEmploye] = useState();
+
+    const onGoBack = useCallback(() => {
+        navigate(-1);
+    }, [navigate]);
+
+    useEffect(() => {
+        if (employeeId) {
+            setEmploye(data.find((el) => el.id === Number(employeeId)));
+        }
+    }, [employeeId, setEmploye]);
+
     return (<div className="employee-page-wrapper">
         <EmployeeCardHeader onGoBack={onGoBack} />
-        <div className="employee-info-wrapper">
+        {employee ? (<div className="employee-info-wrapper">
             <div className='employee-bage'>
                 <div className='avatar'></div>
                 <div className='user-info'>
@@ -30,6 +46,6 @@ export const EmployeeCard = ({ currentEmployee, onGoBack }) => {
                 <div className="label">SMS</div>
                 <div className="value">{employee.phone.sms}</div>
             </div>
-        </div>
+        </div>) : (<h1>NO EMPLOYEE DATA</h1>)}
     </div>);
 }
