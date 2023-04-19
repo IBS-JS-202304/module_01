@@ -1,0 +1,16 @@
+.employee-card-header-wrapper {
+    display: flex;
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.employee-card-header-wrapper .button-back {
+    width: 30px;
+    text-align: center;
+    cursor:pointer;
+}
+
+.employee-card-header-wrapper .header-text {
+    text-align: center;
+    flex: 1;
+}

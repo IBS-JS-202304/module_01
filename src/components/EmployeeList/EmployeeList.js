@@ -1,9 +1,17 @@
 import { EmployeeList as data } from '../../store/EmployeeList';
 import { EmployeeListItem } from './EmployeeListItem';
+import { Header } from './Header';
+import { SearchBar } from './SearchBar';
 
-export const EmployeeList = () => {
-    const list = data.map((user, i) => {
-        return <EmployeeListItem user={user} key={`${i}-${user.name}`} />
-    });
-    return (<div>{list}</div>);
+export const EmployeeList = ({ onItemClick }) => {
+    return (<>
+        <Header />
+        <SearchBar />
+        <div className="employee-list-wrapper">{data.map((user, i) => <EmployeeListItem
+            user={user}
+            key={`${i}-${user.name}`}
+            onClick={onItemClick}
+        />
+        )}</div>
+    </>);
 }

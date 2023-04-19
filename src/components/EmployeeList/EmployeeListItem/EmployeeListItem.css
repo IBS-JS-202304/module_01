@@ -1,9 +1,10 @@
 .employee-list-item {
     padding: 5px 15px;
     margin: 2px 4px;
-    border: solid #e2e2e280 1px;
+    border: solid #93dbb180 1px;
     border-radius: 5px;
     display: flex;
+    cursor:pointer;
 }
 
 .employee-list-item .avatar {
@@ -16,4 +17,5 @@
 .employee-list-item .user-info {
     padding-top: 5px;
     padding-left: 10px;
+    flex: 1;
 }
