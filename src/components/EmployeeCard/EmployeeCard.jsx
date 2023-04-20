@@ -1,18 +1,12 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { EmployeeFullData as data } from '../../store/EmployeeFullData';
-import { EmployeeCardHeader } from './EmployeeCardHeader';
 import './EmployeeCard.css'
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const EmployeeCard = () => {
-    const navigate = useNavigate();
     const { employeeId } = useParams();
 
     const [employee, setEmploye] = useState();
-
-    const onGoBack = useCallback(() => {
-        navigate('/');
-    }, [navigate]);
 
     useEffect(() => {
         if (employeeId) {
@@ -21,7 +15,6 @@ export const EmployeeCard = () => {
     }, [employeeId, setEmploye]);
 
     return (<div className="employee-page-wrapper">
-        <EmployeeCardHeader onGoBack={onGoBack} />
         {employee ? (<div className="employee-info-wrapper">
             <div className='employee-bage'>
                 <div className='avatar'></div>
