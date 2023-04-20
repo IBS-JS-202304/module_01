@@ -1,21 +1,21 @@
 import { useParams } from "react-router-dom";
-import { EmployeeFullData as data } from '../../store/EmployeeFullData';
-import './EmployeeCard.css'
-import { useEffect, useState } from 'react';
+import { useEmployeeFullData } from '../../store/useEmployeeFullData';
+import './EmployeeCard.css';
+import { useEffect } from 'react';
 
 export const EmployeeCard = () => {
     const { employeeId } = useParams();
 
-    const [employee, setEmploye] = useState();
+    const { data: employee, isFetching, isLoaded, getEmployee, } = useEmployeeFullData();
 
     useEffect(() => {
-        if (employeeId) {
-            setEmploye(data.find((el) => el.id === Number(employeeId)));
+        if (!employee && !isFetching && !isLoaded && employeeId) {
+            getEmployee(employeeId);
         }
-    }, [employeeId, setEmploye]);
+    }, [employee, isFetching, isLoaded, getEmployee, employeeId]);
 
     return (<div className="employee-page-wrapper">
-        {employee ? (<div className="employee-info-wrapper">
+        {employee && (<div className="employee-info-wrapper">
             <div className='employee-bage'>
                 <div className='avatar'></div>
                 <div className='user-info'>
@@ -39,6 +39,11 @@ export const EmployeeCard = () => {
                 <div className="label">SMS</div>
                 <div className="value">{employee.phone.sms}</div>
             </div>
-        </div>) : (<h1>NO EMPLOYEE DATA</h1>)}
+        </div>)}
+
+        {(!employee && isFetching) && (<>Employee data loading...</>)}
+
+        {(!employee && !isFetching && isLoaded) && (<>No employee data.</>)}
+
     </div>);
 }
