@@ -1,15 +1,17 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import './SearchBar.css';
 
 export const SearchBar = () => {
-    const [isLabel, setIsLabel] = useState(false);
+    const [isSearchDisabled, setIsSearchDisabled] = useState(false);
 
-    setTimeout(() => { setIsLabel(true) }, 2000);
+    const doSearch = useCallback(() => {
+        setIsSearchDisabled(true);
+        setTimeout(() => { setIsSearchDisabled(false) }, 2000);
+    }, [setIsSearchDisabled]);
 
     return (<div className="search-wrapper">
-        {isLabel ? (<div>Search string:</div>):(<>...</>)}
-        <div className="search-input-wrapper"><input className="search-input" type="text" /></div>
-        <div><button>Find this!</button></div>
+        <div className="search-input-wrapper"><input className="search-input" type="text" disabled={isSearchDisabled} /></div>
+        <div><button disabled={isSearchDisabled} onClick={doSearch}>Find this!</button></div>
     </div>
     );
 }
