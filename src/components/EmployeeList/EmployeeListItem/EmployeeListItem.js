@@ -8,7 +8,7 @@ export const EmployeeListItem = ({ user }) => {
 
     const onClick = useCallback(() => {
         navigate(`/employee/${user.id}`);
-    }, [navigate]);
+    }, [navigate, user]);
 
     return (<div className='employee-list-item' onClick={() => onClick(user)}>
         <div className='avatar'></div>

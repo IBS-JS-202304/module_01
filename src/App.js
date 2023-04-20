@@ -10,7 +10,8 @@ function App() {
     {
       path: "/",
       element: <EmployeeList />,
-    }, {
+    },
+    {
       path: "employee/:employeeId",
       element: <EmployeeCard />,
     },
