@@ -11,7 +11,7 @@ export const EmployeeCard = () => {
     const [employee, setEmploye] = useState();
 
     const onGoBack = useCallback(() => {
-        navigate(-1);
+        navigate('/');
     }, [navigate]);
 
     useEffect(() => {
