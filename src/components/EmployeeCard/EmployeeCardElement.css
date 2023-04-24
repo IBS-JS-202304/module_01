@@ -1,0 +1,18 @@
+.employee-page-wrapper .employee-info-wrapper .info-item-wrapper {
+    display: flex;padding: 15px;
+    margin-bottom: 5px;
+    border: solid #e3e3e3 1px;
+    border-radius: 5px;
+}
+
+.employee-page-wrapper .employee-info-wrapper .info-item-wrapper .info-item {
+    flex: 1;
+}
+
+.employee-page-wrapper .employee-info-wrapper .info-item-wrapper .info-item .label {}
+
+.employee-page-wrapper .employee-info-wrapper .info-item-wrapper .info-item .value {}
+
+.employee-page-wrapper .employee-info-wrapper .info-item-wrapper .action {
+    width: 60px;
+}

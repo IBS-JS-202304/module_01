@@ -8,7 +8,7 @@ const columns = [
     {
         title: 'ID',
         dataKey: 'id'
-    },  
+    },
     {
         title: 'Email',
         dataKey: 'email'
@@ -30,7 +30,7 @@ export const EmployeeGrid = () => {
             return <>Data loading...</>;
         } else if (!isFetching && isLoaded && data) {
             return data.map((user, i) =>
-                <EmployeeGridRow rowData={user} columns={columns} />
+                <EmployeeGridRow rowData={user} columns={columns} key={`${i}-${user.id}`} />
             )
         }
 
@@ -38,6 +38,6 @@ export const EmployeeGrid = () => {
     }, [data, isFetching, isLoaded]);
 
     return (<div className="employee-list-wrapper">
-        <table><EmployeeGridHeader columns={columns}/>{prepareList()}</table>
+        <table><EmployeeGridHeader columns={columns} key='table-herder' />{prepareList()}</table>
     </div>);
 }

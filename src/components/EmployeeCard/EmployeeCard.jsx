@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEmployeeFullData } from '../../store/useEmployeeFullData';
+import { EmployeeCardElement } from './EmployeeCardElement';
 import './EmployeeCard.css';
 import { useEffect } from 'react';
 
@@ -23,22 +24,10 @@ export const EmployeeCard = () => {
                     <div className='employee-position'>{employee.position}</div>
                 </div>
             </div>
-            <div className="info-item">
-                <div className="label">Email</div>
-                <div className="value">{employee.email}</div>
-            </div>
-            <div className="info-item">
-                <div className="label">Call office</div>
-                <div className="value">{employee.phone.office}</div>
-            </div>
-            <div className="info-item">
-                <div className="label">Call mobile</div>
-                <div className="value">{employee.phone.cell}</div>
-            </div>
-            <div className="info-item">
-                <div className="label">SMS</div>
-                <div className="value">{employee.phone.sms}</div>
-            </div>
+            <EmployeeCardElement label="Email" value={employee.email} onEditClick={() => { }} />
+            <EmployeeCardElement label="Call office" value={employee.phone.office} onEditClick={() => { }} />
+            <EmployeeCardElement label="Call mobile" value={employee.phone.cell} onEditClick={() => { }} />
+            <EmployeeCardElement label="SMS" value={employee.phone.sms} onEditClick={() => { }} />
         </div>)}
 
         {(!employee && isFetching) && (<>Employee data loading...</>)}
