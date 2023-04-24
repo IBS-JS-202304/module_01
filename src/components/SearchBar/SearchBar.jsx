@@ -3,7 +3,7 @@ import './SearchBar.css';
 
 export const SearchBar = () => {
     const [isSearchDisabled, setIsSearchDisabled] = useState(false);
-    const inputTextElement = useRef(null);
+    const inputTextElement = useRef(null);  // https://react.dev/learn/manipulating-the-dom-with-refs
 
     const doSearch = useCallback(() => {
         setIsSearchDisabled(true);
