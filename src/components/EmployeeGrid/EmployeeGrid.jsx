@@ -31,22 +31,26 @@ const columns = [
     }
 ];
 
+const tableMessage = (text) => {
+    return <tbody><tr><td colSpan={99}>{text}</td></tr></tbody>;
+}
+
 export const EmployeeGrid = () => {
     const { data, isFetching, isLoaded } = useEmployeeList();
 
     const prepareList = useCallback(() => {
         if (isFetching) {
-            return <>Data loading...</>;
+            return tableMessage("Data loading...");
         } else if (!isFetching && isLoaded && data) {
-            return data.map((user, i) =>
+            return <tbody>{data.map((user, i) =>
                 <EmployeeGridRow rowData={user} columns={columns} key={`${i}-${user.id}`} />
-            )
+            )}</tbody>
         }
 
-        return <>No data.</>;
+        return tableMessage("No data.");
     }, [data, isFetching, isLoaded]);
 
     return (<div className="employee-list-wrapper">
-        <table style={{"border-spacing": 0}}><EmployeeGridHeader columns={columns} key='table-herder' />{prepareList()}</table>
+        <table className='employee-grid-table'><EmployeeGridHeader columns={columns} key='table-herder' />{prepareList()}</table>
     </div>);
 }

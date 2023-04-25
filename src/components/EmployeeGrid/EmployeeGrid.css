@@ -1,5 +1,35 @@
-.employee-list-wrapper {
+/* https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l */
 
+/* Стиль таблицы: общие границы ячеек, ширина, тень */
+.employee-list-wrapper .employee-grid-table {
+    border-collapse: collapse; /* https://developer.mozilla.org/en-US/docs/Web/CSS/border-collapse */
+    min-width: 600px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
-
-
+/* Стиль строки заголовка */
+.employee-list-wrapper .employee-grid-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+/* Внутренние поля всех ячеек (в т. ч. заголовка) */
+.employee-list-wrapper .employee-grid-table th,
+.employee-list-wrapper .employee-grid-table td {
+    padding: 12px 15px;
+}
+/* Нижняя граница строки для разделения строк */
+.employee-list-wrapper .employee-grid-table .table-row {
+    border-bottom: 1px solid #dddddd;
+}
+/* Фон для чётных строк */
+.employee-list-wrapper .employee-grid-table .table-row:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+/* Нижняя граница всей таблицы */
+.employee-list-wrapper .employee-grid-table .table-row:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+/* Фон строки под курсором */
+.employee-list-wrapper .employee-grid-table .table-row:hover {
+    background-color: #eeeeee;
+}
