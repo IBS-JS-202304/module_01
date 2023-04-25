@@ -24,9 +24,9 @@ const columns = [
     },
     {
         title: 'Employee info',
-        dataKey: 'id',
+        dataKey: 'action',
         renderCell: (value, rowData) => {
-            return <Link to={`/employee/${value}`}>Details</Link>
+            return <Link to={`/employee/${rowData.id}`}>Details</Link>
         }
     }
 ];
