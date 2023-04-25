@@ -19,11 +19,11 @@ function App() {
   ]);
 
   return (
-    <UseModalProvider>
-      <div className="App">
+    <div className="App">
+      <UseModalProvider>
         <RouterProvider router={router} />
-      </div>
-    </UseModalProvider>
+      </UseModalProvider>
+    </div>
   );
 }
 
