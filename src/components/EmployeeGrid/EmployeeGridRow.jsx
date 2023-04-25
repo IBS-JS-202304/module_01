@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { useNavigate } from "react-router-dom";
+import './EmployeeGridRow.css';
 
 export const EmployeeGridRow = ({ rowData, columns }) => {
     const navigate = useNavigate();
