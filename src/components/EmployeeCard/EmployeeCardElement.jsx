@@ -1,7 +1,9 @@
 import { useState, useCallback, useRef } from 'react';
+import { useModal } from '../../hooks/use-modal/useModal';
 import './EmployeeCardElement.css';
 
 export const EmployeeCardElement = ({ label, value, onSave }) => {
+    const ctxModal = useModal();
     const [isEdit, setIsEdit] = useState(false);
     const inputRef = useRef();
 
@@ -18,7 +20,7 @@ export const EmployeeCardElement = ({ label, value, onSave }) => {
             <div className="value">{isEdit ? <input defaultValue={value} ref={inputRef} /> : value}</div>
         </div>
         <div className="action">
-            {!isEdit && <button onClick={onEdit}>Edit</button>}
+            {!isEdit && <button onClick={ctxModal.openModal}>Edit</button>}
             {isEdit && <>
                 <button onClick={onSubmit}>Save</button>
                 <button onClick={onCancel}>Cancel</button>

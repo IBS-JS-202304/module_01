@@ -4,7 +4,7 @@ import { Modal } from '../../components/common/Modal';
 
 export const ModalContext = createContext({});
 
-export const useModalProvider = ({ children }) => {
+export const UseModalProvider = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const openModal = useCallback(() => {

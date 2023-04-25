@@ -1,5 +1,6 @@
 import { MainPage } from './pages/MainPage';
 import { EmployeeCardPage } from './pages/EmployeeCardPage';
+import { UseModalProvider } from './hooks/use-modal/useModalProvider';
 import './App.css'; import {
   createBrowserRouter,
   RouterProvider,
@@ -18,9 +19,11 @@ function App() {
   ]);
 
   return (
-    <div className="App">
-      <RouterProvider router={router} />
-    </div>
+    <UseModalProvider>
+      <div className="App">
+        <RouterProvider router={router} />
+      </div>
+    </UseModalProvider>
   );
 }
 
