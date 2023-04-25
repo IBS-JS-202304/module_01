@@ -4,6 +4,7 @@ import { EmployeeGridRow } from './EmployeeGridRow';
 import { EmployeeGridHeader } from './EmployeeGridHeader';
 import { formatUserName } from '../../utils';
 import './EmployeeGrid.css';
+import { Link } from 'react-router-dom';
 
 const columns = [
     {
@@ -25,7 +26,7 @@ const columns = [
         title: 'Employee info',
         dataKey: 'id',
         renderCell: (value, rowData) => {
-            return <a href='http://google.com'>Details</a>
+            return <Link to={`/employee/${value}`}>Details</Link>
         }
     }
 ];
