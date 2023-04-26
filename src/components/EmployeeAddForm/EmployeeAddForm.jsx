@@ -1,9 +1,55 @@
+import { useNavigate } from "react-router-dom";
+import { useCallback, createRef } from 'react';
+import { EmployeeAddFormEl } from './EmployeeAddFormEl';
+import './EmployeeAddForm.css';
+import React from "react";
+
+const getValueFromRef = (ref) => {
+    if (!ref || !ref.current) {
+        return null;
+    }
+    return ref.current.value;
+}
+
 export const EmployeeAddForm = () => {
-    return (<>
-    <div><div>Name</div><input /></div>
-    <div><div>Email</div><input /></div>
-    <div><div>Cell</div><input /></div>
-    <div><div>Work</div><input /></div>
-    <div><div>Position</div><input /></div>
-    </>)
+    const navigate = useNavigate();
+
+    const nameRef = createRef();
+    const positionRef = createRef();
+    const emailRef = createRef();
+    const officePhoneRef = createRef();
+    const cellPhoneRef = createRef();
+    const smsPhoneRef = createRef();
+
+    const onGoBack = useCallback(() => {
+        navigate('/');
+    }, [navigate]);
+
+    const onAddClick = useCallback(() => {
+        const newEmployee = {
+            name: getValueFromRef(nameRef),
+            avatar: '',
+            position: getValueFromRef(positionRef),
+            email: getValueFromRef(emailRef),
+            phone: {
+                office: getValueFromRef(officePhoneRef),
+                cell: getValueFromRef(cellPhoneRef),
+                sms: getValueFromRef(smsPhoneRef),
+            },
+        }
+
+        console.log({ newEmployee });
+
+    }, [nameRef, positionRef, emailRef, officePhoneRef, cellPhoneRef, smsPhoneRef]);
+
+    return (<div className="form-wrapper">
+        <EmployeeAddFormEl label="Name" ref={nameRef} />
+        <EmployeeAddFormEl label="Position" ref={positionRef} />
+        <EmployeeAddFormEl label="Email" ref={emailRef} />
+        <EmployeeAddFormEl label="Call office" ref={officePhoneRef} />
+        <EmployeeAddFormEl label="Call mobile" ref={cellPhoneRef} />
+        <EmployeeAddFormEl label="SMS" ref={smsPhoneRef} />
+        <div className="form-buttons"><button onClick={onAddClick}>Add</button><button onClick={onGoBack}>Cancel</button></div>
+
+    </div>)
 }

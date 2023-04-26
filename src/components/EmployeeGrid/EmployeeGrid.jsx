@@ -26,7 +26,7 @@ const columns = [
 
 export const EmployeeGrid = () => {
     const data = useSelector((state) => state.employeeList.data);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getList());

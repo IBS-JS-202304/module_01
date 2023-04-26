@@ -1,0 +1,19 @@
+
+.form-wrapper .form-row {
+    display: flex;
+    margin-bottom: 10px;
+    width: 400px;
+    border-bottom: solid #e2e2e2 1px;
+}
+
+.form-wrapper .form-row .field-label {
+    width: 150px;
+}
+
+.form-wrapper .form-row .field-input-wrapper {
+    flex: 1;
+}
+
+.form-wrapper .form-row .field-input-wrapper .field-input-el {
+    width: 100%;
+}
