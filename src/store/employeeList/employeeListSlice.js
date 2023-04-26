@@ -7,7 +7,7 @@ export const employeeListSlice = createSlice({
         data: [],
     },
     reducers: {
-        getList: (state) => {
+        getList: (state, action) => {
             state.data = mock;
         }
     },
