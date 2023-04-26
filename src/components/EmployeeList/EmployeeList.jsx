@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useEmployeeList } from '../../store/useEmployeeList';
+import { useEmployeeList } from '../../store/employeeList/useEmployeeList';
 import { EmployeeListItem } from './EmployeeListItem';
 
 export const EmployeeList = () => {

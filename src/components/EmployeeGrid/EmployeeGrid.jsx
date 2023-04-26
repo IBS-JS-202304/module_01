@@ -1,8 +1,10 @@
 import { useCallback } from 'react';
-import { useEmployeeList } from '../../store/useEmployeeList';
+import { useSelector, useDispatch } from 'react-redux';
+import { getList } from '../../store/employeeList/employeeListSlice';
 import { EmployeeGridRow } from './EmployeeGridRow';
 import { EmployeeGridHeader } from './EmployeeGridHeader';
 import { formatUserName } from '../../utils';
+import { useEffect } from 'react';
 
 const columns = [
     {
@@ -23,19 +25,23 @@ const columns = [
 ];
 
 export const EmployeeGrid = () => {
-    const { data, isFetching, isLoaded } = useEmployeeList();
+    const data = useSelector((state) => state.employeeList.data);
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getList());
+    }, []);
+
+    useEffect(() => { console.log({ data }) }, [data])
 
     const prepareList = useCallback(() => {
-        if (isFetching) {
+        if (data.length < 1) {
             return <>Data loading...</>;
-        } else if (!isFetching && isLoaded && data) {
-            return data.map((user, i) =>
-                <EmployeeGridRow rowData={user} columns={columns} key={`${i}-${user.id}`} />
-            )
         }
-
-        return <>No data.</>;
-    }, [data, isFetching, isLoaded]);
+        return data.map((user, i) =>
+            <EmployeeGridRow rowData={user} columns={columns} key={`${i}-${user.id}`} />
+        );
+    }, [data]);
 
     return (<div className="employee-list-wrapper">
         <table><EmployeeGridHeader columns={columns} key='table-herder' />{prepareList()}</table>
