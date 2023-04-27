@@ -24,12 +24,14 @@ const columns = [
 ];
 
 export const EmployeeGrid = () => {
-    const data = useSelector((state) => state.employeeList.data);
+    const { data, pending, loaded } = useSelector((state) => state.employeeList);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getList());
-    }, []);
+        if (!pending && !loaded) {
+            dispatch(getList());
+        }
+    }, [pending, loaded]);
 
     const prepareList = useCallback(() => {
         if (data.length < 1) {
