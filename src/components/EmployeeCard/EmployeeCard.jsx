@@ -47,14 +47,14 @@ export const EmployeeCard = () => {
             <div className='employee-bage'>
                 <div className='avatar'></div>
                 <div className='user-info'>
-                    <div className='employee-name'>{employee.name}</div>
-                    <div className='employee-position'>{employee.position}</div>
+                    <div className='employee-name'>{employee?.name}</div>
+                    <div className='employee-position'>{employee?.position}</div>
                 </div>
             </div>
-            <EmployeeCardElement label="Email" value={employee.email} onSave={prepOnSave('email')} />
-            <EmployeeCardElement label="Call office" value={employee.phone.office} onSave={prepOnSave('phone-office')} />
-            <EmployeeCardElement label="Call mobile" value={employee.phone.cell} onSave={prepOnSave('phone-cell')} />
-            <EmployeeCardElement label="SMS" value={employee.phone.sms} onSave={prepOnSave('phone-sms')} />
+            <EmployeeCardElement label="Email" value={employee?.email} onSave={prepOnSave('email')} />
+            <EmployeeCardElement label="Call office" value={employee?.phone?.office} onSave={prepOnSave('phone-office')} />
+            <EmployeeCardElement label="Call mobile" value={employee?.phone?.cell} onSave={prepOnSave('phone-cell')} />
+            <EmployeeCardElement label="SMS" value={employee?.phone?.sms} onSave={prepOnSave('phone-sms')} />
         </div>)}
     </div>);
 }

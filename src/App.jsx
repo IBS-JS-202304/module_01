@@ -1,6 +1,7 @@
 import { MainPage } from './pages/MainPage';
 import { EmployeeCardPage } from './pages/EmployeeCardPage';
 import { EmployeeAddPage } from './pages/EmployeeAddPage';
+import { SearchPage } from './pages/SearchPage';
 import './App.css'; import {
   createBrowserRouter,
   RouterProvider,
@@ -11,6 +12,10 @@ function App() {
     {
       path: "/",
       element: <MainPage />,
+    },
+    {
+      path: "/search",
+      element: <SearchPage />,
     },
     {
       path: "employee/add",

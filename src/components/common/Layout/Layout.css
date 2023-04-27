@@ -1,0 +1,7 @@
+.layout-wrapper {
+    margin-left: calc(50% - 300px);
+    margin-top: 20px;
+    padding: 20px;
+    width: 600px;
+    background-color: #00000010;
+}

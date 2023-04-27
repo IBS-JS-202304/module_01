@@ -1,10 +1,9 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getList } from '../../store/employeeList/employeeListSlice';
 import { EmployeeGridRow } from './EmployeeGridRow';
 import { EmployeeGridHeader } from './EmployeeGridHeader';
 import { formatUserName } from '../../utils';
-import { useEffect } from 'react';
 
 const columns = [
     {
@@ -33,8 +32,6 @@ export const EmployeeGrid = () => {
             dispatch(getList());
         }
     }, [pending, loaded]);
-
-    useEffect(() => { console.log({ data }) }, [data])
 
     const prepareList = useCallback(() => {
         if (data.length < 1) {

@@ -40,8 +40,6 @@ export const EmployeeAddForm = () => {
                 sms: getValueFromRef(smsPhoneRef),
             },
         }
-
-        console.log({ newEmployee });
         dispatch(addEmployee(newEmployee));
         navigate('/');
 
