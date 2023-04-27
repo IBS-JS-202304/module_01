@@ -3,11 +3,12 @@
     display: flex;
     margin-bottom: 10px;
     width: 400px;
-    border-bottom: solid #e2e2e2 1px;
 }
 
 .form-wrapper .form-row .field-label {
     width: 150px;
+    padding: 3px 6px;
+    border-bottom: dotted #e2e2e2 1px;
 }
 
 .form-wrapper .form-row .field-input-wrapper {
@@ -16,4 +17,7 @@
 
 .form-wrapper .form-row .field-input-wrapper .field-input-el {
     width: 100%;
+    border: none;
+    border-bottom: solid #e2e2e2 3px;
+    padding: 3px 6px;
 }

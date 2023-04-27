@@ -1,55 +1,46 @@
 import { useEffect, useCallback } from 'react';
 import { useParams } from "react-router-dom";
-import { useEmployeeFullData } from '../../store/useEmployeeFullData';
+import { useSelector, useDispatch } from 'react-redux';
 import { EmployeeCardElement } from './EmployeeCardElement';
+import { updateEmployee } from '../../store/employeeList/employeeListSlice';
 import './EmployeeCard.css';
 import { useState } from 'react';
 
 export const EmployeeCard = () => {
     const [employee, setEmployee] = useState();
     const { employeeId } = useParams();
-    const { data, isFetching, isLoaded, getEmployee, } = useEmployeeFullData();
+    const { data } = useSelector((state) => state.employeeList);
+    const dispatch = useDispatch();
 
     const prepOnSave = useCallback((fieldName) => (newValue) => {
+        const newState = {};
         switch (fieldName) {
             case 'email':
-                setEmployee((state) => { return { ...state, email: newValue } });
+                newState.email = newValue;
                 break;
             case 'phone-office':
-                setEmployee((state) => {
-                    const newState = { ...state };
-                    newState.phone.office = newValue;
-                    return newState;
-                });
+                newState.phone.office = newValue;
                 break;
             case 'phone-cell':
-                setEmployee((state) => {
-                    const newState = { ...state };
-                    newState.phone.cell = newValue;
-                    return newState;
-                });
+                newState.phone.cell = newValue;
                 break;
             case 'phone-sms':
-                setEmployee((state) => {
-                    const newState = { ...state };
-                    newState.phone.sms = newValue;
-                    return newState;
-                });
+                newState.phone.sms = newValue;
                 break;
         }
-    }, [setEmployee]);
+        setEmployee((state) => {
+            const upd = { ...state, ...newState };
+            dispatch(updateEmployee(upd));
+            return upd;
+        });
+    }, [setEmployee, dispatch, updateEmployee]);
 
     useEffect(() => {
-        if (!isFetching && !isLoaded && employeeId) {
-            getEmployee(employeeId);
+        const employee = data.find(({ id }) => Number(employeeId) === id);
+        if (employee) {
+            setEmployee(employee);
         }
-    }, [isFetching, isLoaded, getEmployee, employeeId]);
-
-    useEffect(() => {
-        if (data) {
-            setEmployee(data);
-        }
-    }, [data, setEmployee]);
+    }, [data, setEmployee, employeeId]);
 
     return (<div className="employee-page-wrapper">
         {employee && (<div className="employee-info-wrapper">
@@ -65,10 +56,5 @@ export const EmployeeCard = () => {
             <EmployeeCardElement label="Call mobile" value={employee.phone.cell} onSave={prepOnSave('phone-cell')} />
             <EmployeeCardElement label="SMS" value={employee.phone.sms} onSave={prepOnSave('phone-sms')} />
         </div>)}
-
-        {(!employee && isFetching) && (<>Employee data loading...</>)}
-
-        {(!employee && !isFetching && isLoaded) && (<>No employee data.</>)}
-
     </div>);
 }
