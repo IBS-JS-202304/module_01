@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useCallback, createRef } from 'react';
 import { EmployeeAddFormEl } from './EmployeeAddFormEl';
+import { addEmployee } from '../../store/employeeList/employeeListSlice';
 import './EmployeeAddForm.css';
 import React from "react";
+import { useDispatch } from "react-redux";
 
 const getValueFromRef = (ref) => {
     if (!ref || !ref.current) {
@@ -13,6 +15,7 @@ const getValueFromRef = (ref) => {
 
 export const EmployeeAddForm = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     const nameRef = createRef();
     const positionRef = createRef();
@@ -39,8 +42,9 @@ export const EmployeeAddForm = () => {
         }
 
         console.log({ newEmployee });
+        dispatch(addEmployee(newEmployee));
 
-    }, [nameRef, positionRef, emailRef, officePhoneRef, cellPhoneRef, smsPhoneRef]);
+    }, [dispatch, nameRef, positionRef, emailRef, officePhoneRef, cellPhoneRef, smsPhoneRef]);
 
     return (<div className="form-wrapper">
         <EmployeeAddFormEl label="Name" ref={nameRef} />
