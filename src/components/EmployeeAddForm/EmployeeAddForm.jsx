@@ -37,9 +37,8 @@ export const EmployeeAddForm = () => {
                 sms: getValueFromRef(smsPhoneRef),
             },
         }
-
-        console.log({ newEmployee });
-
+        dispatch(addEmployee(newEmployee));
+        navigate('/');
     }, [nameRef, positionRef, emailRef, officePhoneRef, cellPhoneRef, smsPhoneRef]);
 
     return (<div className="form-wrapper">

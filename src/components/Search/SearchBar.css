@@ -9,5 +9,12 @@
 }
 
 .search-wrapper .search-input-wrapper .search-input {
-    flex: 1;
+    width: 100%;
+    border: none;
+    border-bottom: solid #e2e2e2 3px;
+    padding: 3px 6px;
+}
+
+.search-wrapper .search-button-wrapper {
+    padding-left: 6px;
 }
